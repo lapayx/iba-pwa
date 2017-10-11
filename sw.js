@@ -42,8 +42,7 @@ this.addEventListener('install', function(event) {
 
       cache.addAll(
 	  
-       [ "app.js",
-        "config.js",
+       [ 
         "index.html",
         "post.html",
 		"about.html",
