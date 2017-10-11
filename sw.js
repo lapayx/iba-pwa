@@ -1,26 +1,20 @@
 'use strict';
-importScripts('app.version.js'); 
-//toolbox.precache(["index.html"]);
- //toolbox.router.get('assets/*', toolbox.cacheFirst); 
- //toolbox.router.get('/*', 
- //toolbox.networkFirst, { networkTimeoutSeconds: 5});
 
- var versionApp = app.version;
+
+ var versionApp = 1;
  
  this.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.open('dynamic-assets').then(function(cache) {
+  
+    caches.open('mysite-dynamic').then(function(cache) {
       return cache.match(event.request).then(function (response) {
         return response || fetch(event.request).then(function(response) {
-          let url = event.request.url;
-          if(url.indexOf("hiteka")>0  && url.indexOf("/api/")<0 && url.indexOf("/token")<0
-            && ( url.indexOf("app.js")<0 && url.indexOf("config.js")<0 && url.indexOf("index.html")<0 && url.indexOf("login.html")<0)
-          )
-            cache.put(event.request, response.clone());
+          cache.put(event.request, response.clone());
           return response;
         });
       });
     })
+	
   );
 });
 
@@ -51,7 +45,9 @@ this.addEventListener('install', function(event) {
        [ "app.js",
         "config.js",
         "index.html",
-        "login.html"
+        "post.html",
+		"about.html",
+		"contact.html"
         ]
       );
       return cache/*.addAll(
