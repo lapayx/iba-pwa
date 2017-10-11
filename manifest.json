@@ -3,7 +3,7 @@
   "short_name": "IBA-Gomel news",
   "description": "IBA blog",
   "lang": "en-US",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "theme_color": "#0275d8",
   "icons": [
