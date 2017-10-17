@@ -1,7 +1,7 @@
 'use strict';
 
 
- var versionApp = 4;
+ var versionApp = 5;
  
  this.addEventListener('fetch', function(event) {
   event.respondWith(
