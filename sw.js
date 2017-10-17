@@ -1,7 +1,7 @@
 'use strict';
 
 
- var versionApp = 1;
+ var versionApp = 2;
  
  this.addEventListener('fetch', function(event) {
   event.respondWith(
@@ -9,8 +9,12 @@
     caches.open('mysite-dynamic').then(function(cache) {
       return cache.match(event.request).then(function (response) {
         return response || fetch(event.request).then(function(response) {
-          cache.put(event.request, response.clone());
+          if(event.request.url.indexOf("contact.html")<0)
+            cache.put(event.request, response.clone());
           return response;
+        }).catch(function(response) {
+          if(event.request.url.indexOf("contact.html")>-1)
+            return caches.match('contact.offline.html'); 
         });
       });
     })
@@ -45,8 +49,11 @@ this.addEventListener('install', function(event) {
        [ 
         "index.html",
         "post.html",
-		"about.html",
-		"contact.html"
+        "post.1.html",
+        "post.2.html",
+        "post.3.html",
+		    "about.html",
+		    "contact.offline.html"
         ]
       );
       return cache/*.addAll(
