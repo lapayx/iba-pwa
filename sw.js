@@ -1,7 +1,7 @@
 'use strict';
 
 
- var versionApp = 3;
+ var versionApp = 4;
  
  this.addEventListener('fetch', function(event) {
   event.respondWith(
@@ -14,8 +14,8 @@
           return response;
         }).catch(function(response) {
 
-          if(event.request.url.indexOf("contact.html")>-1){
-            return caches.match('contact.offline.html');
+          if(event.request.url.indexOf(".html")>-1){
+            return caches.match('offline.html');
           }
           else{
             return caches.match(event.request.url);
@@ -56,10 +56,8 @@ this.addEventListener('install', function(event) {
         "index.html",
         "post.html",
         "post.1.html",
-        "post.2.html",
-        "post.3.html",
 		    "about.html",
-		    "contact.offline.html"
+		    "offline.html"
         ]
       );
       return cache/*.addAll(
