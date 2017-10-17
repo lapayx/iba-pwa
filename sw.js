@@ -1,7 +1,7 @@
 'use strict';
 
 
- var versionApp = 2;
+ var versionApp = 3;
  
  this.addEventListener('fetch', function(event) {
   event.respondWith(
@@ -13,8 +13,14 @@
             cache.put(event.request, response.clone());
           return response;
         }).catch(function(response) {
-          if(event.request.url.indexOf("contact.html")>-1)
-            return caches.match('contact.offline.html'); 
+
+          if(event.request.url.indexOf("contact.html")>-1){
+            return caches.match('contact.offline.html');
+          }
+          else{
+            return caches.match(event.request.url);
+
+          }
         });
       });
     })
